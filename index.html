@@ -207,63 +207,178 @@
         const STORAGE_KEY = 'knowledge_ladder_db_v2';
 
         function generateCourses() {
-            return [
-                { 
-                    id: 1, 
-                    title: "تقنية البومودورو (Pomodoro)", 
-                    type: "course", tier: 3, author: "TechLead", date: "2026-02-01",
-                    desc: "تعلم كيف تبرمج لمدة 25 دقيقة بتركيز تام.",
-                    htmlContent: `
-                        <div class="course-html">
-                            <div style="text-align:center; margin-bottom:3rem">
-                                <i class="fa-regular fa-clock fa-4x" style="color:#ef4444; margin-bottom:1rem"></i>
-                                <h1>تقنية البومودورو</h1>
-                                <p style="font-size:1.2rem; color:#94a3b8">كيف تنجز ضعف العمل في نصف الوقت؟</p>
+    return [
+        { 
+            id: 1, 
+            title: "احتراف تقنية البومودورو (Deep Work)", 
+            type: "course", 
+            tier: 3, 
+            author: "TechLead", 
+            date: "2026-02-01",
+            desc: "دليل عملي لزيادة التركيز وتقليل الإرهاق الذهني للمبرمجين وصناع المحتوى.",
+            htmlContent: `
+                <div class="course-html">
+                    <div style="text-align:center; margin-bottom:2rem">
+                        <i class="fa-solid fa-stopwatch fa-3x" style="color:#ef4444; margin-bottom:10px"></i>
+                        <h1 style="margin:0">تقنية البومودورو 2.0</h1>
+                        <p style="color:#94a3b8">كيف تضاعف إنتاجيتك دون أن تحترق؟</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>🤔 المشكلة الحقيقية</h3>
+                        <p>هل سبق وجلست لتعمل على ميزة (Feature) لمدة 4 ساعات متواصلة، ثم نهضت وأنت تشعر بصداع وتشوش؟ هذا يسمى <strong>"الإرهاق المعرفي"</strong>. عقلك ليس مصمماً للتركيز الحاد لفترات طويلة دون فواصل.</p>
+                    </div>
+
+                    <h2>🛠️ المنهجية الصحيحة (The Protocol)</h2>
+                    <p>الفكرة ليست مجرد "مؤقت". الفكرة هي إدارة الطاقة الذهنية. النظام يتكون من دورات:</p>
+                    
+                    <ul class="step-list">
+                        <li class="step-item">
+                            <span class="step-num">1</span>
+                            <div>
+                                <strong>جلسة التركيز (25 دقيقة):</strong>
+                                <p style="margin:5px 0 0 0; font-size:0.9rem; color:#cbd5e1">ممنوع الهاتف، ممنوع البريد الإلكتروني. هدف واحد فقط. إذا طرأت فكرة أخرى، اكتبها في ورقة خارجية وعد فوراً للعمل.</p>
                             </div>
-                            <div class="highlight-box">
-                                <h3 style="margin-top:0"><i class="fa-solid fa-lightbulb"></i> الفكرة الأساسية</h3>
-                                <p>عقلك ليس مصمماً للتركيز المستمر. المعادلة: 25 دقيقة عمل + 5 دقائق راحة.</p>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-num">2</span>
+                            <div>
+                                <strong>الراحة القصيرة (5 دقائق):</strong>
+                                <p style="margin:5px 0 0 0; font-size:0.9rem; color:#cbd5e1">يجب أن تكون راحة "سلبية". ابتعد عن الشاشة. لا تتصفح فيسبوك. اترك عينيك ترتاحان.</p>
                             </div>
-                            <h2><i class="fa-solid fa-list-check"></i> الخطوات</h2>
-                            <ul class="step-list">
-                                <li class="step-item"><span class="step-num">1</span><div><strong>حدد المهمة:</strong> اختر شيئاً واحداً فقط.</div></li>
-                                <li class="step-item"><span class="step-num">2</span><div><strong>اضبط المؤقت:</strong> 25 دقيقة. ممنوع التوقف.</div></li>
-                                <li class="step-item"><span class="step-num">3</span><div><strong>استراحة:</strong> 5 دقائق. ابتعد عن الشاشة.</div></li>
-                            </ul>
-                            <button class="btn-complete" onclick="closeReaderWithSuccess(this)"><span>🎉 لقد أنهيت الدرس</span></button>
-                        </div>`
-                },
-                { 
-                    id: 2, 
-                    title: "مصفوفة أيزنهاور (Eisenhower)", 
-                    type: "course", tier: 3, author: "PM_Sarah", date: "2026-02-02",
-                    desc: "أداة اتخاذ القرار لترتيب الأولويات.",
-                    htmlContent: `
-                        <div class="course-html">
-                            <h1>📊 مصفوفة أيزنهاور</h1>
-                            <div class="grid-visual">
-                                <div class="grid-box" style="background: linear-gradient(135deg, #ef4444, #b91c1c);"><h3>1. افعله الآن</h3><p>هام وعاجل</p></div>
-                                <div class="grid-box" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);"><h3>2. خطط له</h3><p>هام وغير عاجل</p></div>
-                                <div class="grid-box" style="background: linear-gradient(135deg, #eab308, #a16207);"><h3>3. فوضه</h3><p>غير هام وعاجل</p></div>
-                                <div class="grid-box" style="background: linear-gradient(135deg, #64748b, #334155);"><h3>4. اتركه</h3><p>غير هام وغير عاجل</p></div>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-num">3</span>
+                            <div>
+                                <strong>الراحة الطويلة (15-30 دقيقة):</strong>
+                                <p style="margin:5px 0 0 0; font-size:0.9rem; color:#cbd5e1">بعد إتمام 4 دورات (بومودورو)، كافئ نفسك براحة حقيقية.</p>
                             </div>
-                            <button class="btn-complete" onclick="closeReaderWithSuccess(this)"><span>🎉 لقد أنهيت الدرس</span></button>
-                        </div>`
-                },
-                { 
-                    id: 3, 
-                    title: "قاعدة الـ 5 ثواني", 
-                    type: "course", tier: 3, author: "HR_Team", date: "2026-02-03",
-                    desc: "كيف تخدع عقلك ليتوقف عن التسويف.",
-                    htmlContent: `
-                        <div class="course-html">
-                            <div style="text-align:center;"><h1 style="font-size:4rem; margin:0; color:var(--primary)">5 - 4 - 3 - 2 - 1 🚀</h1><h2>قاعدة الـ 5 ثواني</h2></div>
-                            <div class="highlight-box" style="border-right:none; border-left:4px solid var(--accent);"><h3>🧠 لماذا تعمل؟</h3><p>العد العكسي يقطع دائرة التفكير المعتادة وينشط القشرة الجبهية.</p></div>
-                            <button class="btn-complete" onclick="closeReaderWithSuccess(this)"><span>🎉 لقد أنهيت الدرس</span></button>
-                        </div>`
-                }
-            ];
+                        </li>
+                    </ul>
+
+                    <div class="highlight-box" style="border-left: 4px solid #f59e0b; border-right:none; background: rgba(245, 158, 11, 0.1);">
+                        <h3>💡 نصيحة للمبرمجين (Pro Tip)</h3>
+                        <p>أكبر عيب للبومودورو للمبرمجين هو قطع "حبل الأفكار" (Flow State).<br>
+                        <strong>الحل:</strong> إذا رن الجرس وأنت في منتصف كود معقد، لا تتوقف فوراً. اكتب تعليقاً (Comment) يصف ما كنت تنوي فعله، ثم توقف. هذا يسهل عليك العودة بعد الـ 5 دقائق.</p>
+                    </div>
+
+                    <button class="btn-complete" onclick="closeReaderWithSuccess(this)">
+                        <span>✅ قرأت واستفدت</span>
+                    </button>
+                </div>
+            `
+        },
+        { 
+            id: 2, 
+            title: "إدارة الأولويات بمصفوفة أيزنهاور", 
+            type: "course", 
+            tier: 3, 
+            author: "Senior Manager", 
+            date: "2026-02-02",
+            desc: "توقف عن الانشغال وابدأ في الإنتاجية. كيف تفرق بين 'العاجل' و 'المهم'؟",
+            htmlContent: `
+                <div class="course-html">
+                    <h1 style="text-align:center">📊 مصفوفة أيزنهاور</h1>
+                    <p style="text-align:center; font-size:1.1rem; margin-bottom:2rem">
+                        "ما هو مهم نادراً ما يكون عاجلاً، وما هو عاجل نادراً ما يكون مهماً."
+                    </p>
+
+                    <div class="grid-visual">
+                        <div class="grid-box" style="background: linear-gradient(135deg, #ef4444, #991b1b);">
+                            <i class="fa-solid fa-fire fa-2x"></i>
+                            <h3>1. مربع الأزمات</h3>
+                            <p style="font-size:0.9rem">هام وعاجل</p>
+                            <div style="background:rgba(0,0,0,0.3); padding:5px; border-radius:4px; font-size:0.8rem; margin-top:5px">افعله الآن</div>
+                        </div>
+                        <div class="grid-box" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">
+                            <i class="fa-solid fa-chess-knight fa-2x"></i>
+                            <h3>2. مربع الجودة</h3>
+                            <p style="font-size:0.9rem">هام وغير عاجل</p>
+                            <div style="background:rgba(0,0,0,0.3); padding:5px; border-radius:4px; font-size:0.8rem; margin-top:5px">خطط له (هنا النجاح)</div>
+                        </div>
+                        <div class="grid-box" style="background: linear-gradient(135deg, #eab308, #854d0e);">
+                            <i class="fa-solid fa-user-clock fa-2x"></i>
+                            <h3>3. مربع الخداع</h3>
+                            <p style="font-size:0.9rem">غير هام وعاجل</p>
+                            <div style="background:rgba(0,0,0,0.3); padding:5px; border-radius:4px; font-size:0.8rem; margin-top:5px">فوضه لغيرك</div>
+                        </div>
+                        <div class="grid-box" style="background: linear-gradient(135deg, #64748b, #334155);">
+                            <i class="fa-solid fa-trash-can fa-2x"></i>
+                            <h3>4. مربع الضياع</h3>
+                            <p style="font-size:0.9rem">غير هام وغير عاجل</p>
+                            <div style="background:rgba(0,0,0,0.3); padding:5px; border-radius:4px; font-size:0.8rem; margin-top:5px">اتركه</div>
+                        </div>
+                    </div>
+
+                    <h3>🧐 التحليل العميق</h3>
+                    <p>معظمنا يقضي يومه في <strong>المربع رقم 1</strong> (إطفاء الحرائق) و <strong>المربع رقم 3</strong> (اجتماعات لا فائدة منها، إيميلات، مكالمات).</p>
+                    <p>لكن الناجحين يقضون 70% من وقتهم في <strong>المربع رقم 2 (الأزرق)</strong>. هذا هو مربع التعلم، التخطيط الاستراتيجي، بناء العلاقات، والرياضة.</p>
+
+                    <div class="highlight-box">
+                        <strong>تمرين عملي:</strong>
+                        <p>راجع مهامك للأسبوع القادم. هل تجد وقتاً مخصصاً لتعلم مهارة جديدة (مربع 2)؟ إذا لم تجد، فأنت في خطر الركود المهني.</p>
+                    </div>
+                    
+                    <button class="btn-complete" onclick="closeReaderWithSuccess(this)">
+                        <span>✅ استوعبت الدرس</span>
+                    </button>
+                </div>
+            `
+        },
+        { 
+            id: 3, 
+            title: "قاعدة الـ 5 ثواني (Mel Robbins)", 
+            type: "course", 
+            tier: 3, 
+            author: "Productivity Coach", 
+            date: "2026-02-03",
+            desc: "الأداة النفسية الأقوى للتغلب على التسويف والتردد في لحظته.",
+            htmlContent: `
+                <div class="course-html">
+                    <div style="text-align:center;">
+                        <h1 style="font-size:4rem; margin:0; color:var(--primary); font-family:monospace">5 - 4 - 3 - 2 - 1 🚀</h1>
+                        <h2 style="margin-top:0">قاعدة الـ 5 ثواني</h2>
+                    </div>
+                    
+                    <div class="highlight-box" style="border-left:4px solid var(--accent); border-right:none">
+                        <h3>🧠 العلوم وراء القاعدة</h3>
+                        <p>هل تعلم أن هناك "نافذة زمنية" مدتها 5 ثواني فقط بين اللحظة التي تأتيك فيها فكرة جيدة (مثلاً: سأقوم لأذاكر) وبين اللحظة التي يتدخل فيها عقلك ليمنعك؟</p>
+                        <p>عقلك مصمم لحمايتك من المجهول ومن التعب. إذا ترددت لأكثر من 5 ثوانٍ، سيبدأ عقلك في اختلاق الأعذار (الجو بارد، سأبدأ غداً، أنا متعب).</p>
+                    </div>
+
+                    <h3>كيف تطبقها؟</h3>
+                    <p>العد العكسي <strong>(5-4-3-2-1)</strong> يفعل شيئاً سحرياً في الدماغ:</p>
+                    <ul style="line-height:1.8">
+                        <li>يقطع حبل التفكير السلبي (Interrupts Habit Loops).</li>
+                        <li>ينشط القشرة الجبهية (Prefrontal Cortex) المسؤولة عن القرار والتحكم.</li>
+                    </ul>
+
+                    <h3>سيناريوهات للتطبيق:</h3>
+                    <ul class="step-list">
+                        <li class="step-item">
+                            <i class="fa-solid fa-bed fa-2x" style="color:#94a3b8"></i>
+                            <div>
+                                <strong>الاستيقاظ:</strong>
+                                <p style="margin:5px 0 0 0; color:#cbd5e1">لا تضغط غفوة (Snooze). بمجرد سماع المنبه، عد 5-4-3-2-1 وانهض فوراً.</p>
+                            </div>
+                        </li>
+                        <li class="step-item">
+                            <i class="fa-solid fa-hand-holding-hand fa-2x" style="color:#94a3b8"></i>
+                            <div>
+                                <strong>الاجتماعات:</strong>
+                                <p style="margin:5px 0 0 0; color:#cbd5e1">لديك فكرة ولكن خائف؟ عد 5-4-3-2-1 وارفع يدك قبل أن يسيطر عليك الخوف.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <button class="btn-complete" onclick="closeReaderWithSuccess(this)">
+                        <span>✅ سأطبقها اليوم</span>
+                    </button>
+                </div>
+            `
         }
+    ];
+}
 
         // --- Logic ---
         let allContent = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
