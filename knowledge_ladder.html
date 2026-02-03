@@ -11,11 +11,11 @@
         :root {
             --primary: #3b82f6;
             --accent: #8b5cf6;
+            --success: #10b981;
             --bg-dark: #0f172a;
             --bg-card: #1e293b;
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
-            
             --tier-1-gold: #fbbf24;
             --tier-2-silver: #38bdf8;
             --tier-3-bronze: #9ca3af;
@@ -34,72 +34,39 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+        @keyframes successPop { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
         /* --- Header --- */
         header {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(12px);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px);
+            padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1); display: flex;
+            justify-content: space-between; align-items: center;
         }
         .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
         .logo span { color: #fff; }
-        
         .btn-upload {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            border: none;
-            padding: 0.7rem 1.8rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none;
+            padding: 0.7rem 1.8rem; border-radius: 50px; cursor: pointer; font-weight: bold;
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-            transition: 0.3s;
         }
         .btn-upload:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); }
 
-        /* --- Tiers Layout --- */
-        .tier-section {
-            padding: 2.5rem;
-            margin: 2rem auto;
-            max-width: 1200px;
-            border-radius: 20px;
-            min-height: 150px;
-            transition: 0.3s;
-        }
-        .tier-header {
-            display: flex; align-items: center; gap: 15px; margin-bottom: 2rem;
-            padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        /* --- Tiers --- */
+        .tier-section { padding: 2.5rem; margin: 2rem auto; max-width: 1200px; border-radius: 20px; min-height: 150px; }
+        .tier-header { display: flex; align-items: center; gap: 15px; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .tier-title { font-size: 1.8rem; font-weight: 900; margin: 0; }
         
         .tier-1 { background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, transparent 100%); border: 1px solid rgba(251, 191, 36, 0.2); }
         .tier-1 .tier-title { color: var(--tier-1-gold); }
-        
         .tier-2 { border-left: 5px solid var(--tier-2-silver); background: rgba(30, 41, 59, 0.3); }
         .tier-2 .tier-title { color: var(--tier-2-silver); }
-        
         .tier-3 { border-left: 5px solid var(--tier-3-bronze); background: rgba(15, 23, 42, 0.6); }
         .tier-3 .tier-title { color: var(--tier-3-bronze); }
 
-        .empty-state {
-            text-align: center; color: rgba(255,255,255,0.2); padding: 3rem;
-            border: 2px dashed rgba(255,255,255,0.1); border-radius: 12px; font-style: italic;
-        }
-
         /* --- Cards --- */
-        .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem;
-        }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
         .card {
             background: var(--bg-card); border-radius: 16px; overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -107,7 +74,6 @@
             animation: fadeIn 0.6s ease-out;
         }
         .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        
         .card-media {
             height: 160px; background: #020617; display: flex; align-items: center; justify-content: center;
             color: var(--text-muted); font-size: 3.5rem; position: relative;
@@ -121,7 +87,6 @@
         .card-body { padding: 1.5rem; flex-grow: 1; }
         .card-title { margin: 0 0 0.8rem 0; font-size: 1.25rem; line-height: 1.4; }
         .card-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-        
         .card-actions {
             padding: 1rem 1.5rem; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05);
             display: flex; justify-content: space-between; align-items: center;
@@ -131,16 +96,14 @@
         .btn-view { color: var(--primary); font-weight: bold; background: rgba(59, 130, 246, 0.1); padding: 6px 12px; border-radius: 6px; }
         .btn-view:hover { background: var(--primary); color: white; }
 
-        /* --- READER MODAL (The LMS Experience) --- */
+        /* --- READER MODAL --- */
         .reader-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); z-index: 3000;
             display: none; justify-content: center; align-items: center;
-            backdrop-filter: blur(8px);
-            opacity: 0; transition: opacity 0.3s;
+            backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s;
         }
         .reader-overlay.active { opacity: 1; }
-        
         .reader-content {
             background: #0f172a; width: 900px; max-width: 95%; height: 90%;
             border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;
@@ -148,75 +111,63 @@
             transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .reader-overlay.active .reader-content { transform: scale(1); }
-
         .reader-header {
             padding: 1.5rem 2rem; background: #1e293b; border-bottom: 1px solid #334155;
             display: flex; justify-content: space-between; align-items: center;
         }
         .reader-title-area h3 { margin: 0; font-size: 1.4rem; color: var(--primary); }
         .reader-meta { font-size: 0.85rem; color: var(--text-muted); margin-top: 5px; }
-        
-        .reader-body {
-            padding: 3rem; overflow-y: auto; flex-grow: 1; color: #e2e8f0; line-height: 1.9; font-size: 1.1rem;
-            scroll-behavior: smooth;
-        }
-        
-        /* Lively HTML Content Styles */
-        .course-html { animation: slideUp 0.6s ease-out; max-width: 800px; margin: 0 auto; }
-        .course-html h1 { font-size: 2.2rem; margin-bottom: 2rem; background: linear-gradient(90deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .course-html h2 { color: var(--tier-2-silver); margin-top: 3rem; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px;
-            padding: 2rem; margin: 2rem 0; position: relative; overflow: hidden;
-        }
-        .highlight-box::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--primary); }
-        
-        .step-list { list-style: none; padding: 0; margin: 2rem 0; display: grid; gap: 15px; }
-        .step-item { background: #1e293b; padding: 1.5rem; border-radius: 10px; border: 1px solid #334155; display: flex; gap: 15px; align-items: flex-start; transition: 0.3s; }
-        .step-item:hover { border-color: var(--primary); transform: translateX(-5px); }
-        .step-num { background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
-        
-        .grid-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 2rem 0; }
-        .grid-box { padding: 2rem; border-radius: 12px; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 150px; }
-        
+        .reader-body { padding: 3rem; overflow-y: auto; flex-grow: 1; color: #e2e8f0; line-height: 1.9; font-size: 1.1rem; scroll-behavior: smooth; }
         .btn-close-reader {
             background: rgba(255,255,255,0.1); color: white; border: none; width: 36px; height: 36px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;
         }
         .btn-close-reader:hover { background: #dc2626; transform: rotate(90deg); }
 
+        /* Course HTML Styles */
+        .course-html { animation: slideUp 0.6s ease-out; max-width: 800px; margin: 0 auto; }
+        .course-html h1 { font-size: 2.2rem; margin-bottom: 2rem; background: linear-gradient(90deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .course-html h2 { color: var(--tier-2-silver); margin-top: 3rem; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 2rem; margin: 2rem 0; position: relative; overflow: hidden;
+        }
+        .highlight-box::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--primary); }
+        .step-list { list-style: none; padding: 0; margin: 2rem 0; display: grid; gap: 15px; }
+        .step-item { background: #1e293b; padding: 1.5rem; border-radius: 10px; border: 1px solid #334155; display: flex; gap: 15px; align-items: flex-start; transition: 0.3s; }
+        .step-item:hover { border-color: var(--primary); transform: translateX(-5px); }
+        .step-num { background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .grid-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 2rem 0; }
+        .grid-box { padding: 2rem; border-radius: 12px; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 150px; }
+
+        /* SUCCESS BUTTON STYLE */
         .btn-complete {
-            display: block; width: 100%; max-width: 300px; margin: 4rem auto 0;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            width: 100%; max-width: 300px; margin: 4rem auto 0;
             padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 12px;
             font-size: 1.1rem; font-weight: bold; cursor: pointer; text-align: center;
-            animation: pulse 2s infinite;
+            transition: all 0.3s ease; animation: pulse 2s infinite;
         }
-        .btn-complete:hover { background: #2563eb; animation: none; }
-
+        .btn-complete:hover { background: #2563eb; animation: none; transform: translateY(-2px); }
+        .btn-complete.success {
+            background-color: var(--success); animation: successPop 0.3s ease-out; cursor: default;
+        }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">
             <i class="fa-solid fa-layer-group fa-lg"></i>
             <div>Knowledge <span>Ladder</span></div>
         </div>
-        <button class="btn-upload" onclick="alert('Demo Mode: Upload disabled')">
-            <i class="fa-solid fa-cloud-arrow-up"></i> مشاركة معرفة
-        </button>
+        <button class="btn-upload" onclick="alert('Demo Mode')"><i class="fa-solid fa-cloud-arrow-up"></i> مشاركة معرفة</button>
     </header>
 
     <main>
         <section class="tier-section tier-1">
             <div class="tier-header">
                 <i class="fa-solid fa-crown fa-2x" style="color: var(--tier-1-gold)"></i>
-                <div>
-                    <h2 class="tier-title">المحتوى الذهبي (Tier 1)</h2>
-                    <div style="font-size:0.9rem; color:#64748b">The Gold Standard</div>
-                </div>
+                <div><h2 class="tier-title">المحتوى الذهبي (Tier 1)</h2><div style="font-size:0.9rem; color:#64748b">The Gold Standard</div></div>
             </div>
             <div class="grid-container" id="tier1-container"></div>
         </section>
@@ -224,10 +175,7 @@
         <section class="tier-section tier-2">
             <div class="tier-header">
                 <i class="fa-solid fa-flask fa-2x" style="color: var(--tier-2-silver)"></i>
-                <div>
-                    <h2 class="tier-title">قيد التطوير (Tier 2)</h2>
-                    <div style="font-size:0.9rem; color:#64748b">Active Development</div>
-                </div>
+                <div><h2 class="tier-title">قيد التطوير (Tier 2)</h2><div style="font-size:0.9rem; color:#64748b">Active Development</div></div>
             </div>
             <div class="grid-container" id="tier2-container"></div>
         </section>
@@ -235,10 +183,7 @@
         <section class="tier-section tier-3">
             <div class="tier-header">
                 <i class="fa-solid fa-seedling fa-2x" style="color: var(--tier-3-bronze)"></i>
-                <div>
-                    <h2 class="tier-title">المختبر (Tier 3)</h2>
-                    <p style="color:#94a3b8; margin: 5px 0 0 0">أفكار جديدة تنتظر التطوير.. اضغط <strong>معاينة</strong> للتجربة.</p>
-                </div>
+                <div><h2 class="tier-title">المختبر (Tier 3)</h2><p style="color:#94a3b8; margin: 5px 0 0 0">أفكار جديدة تنتظر التطوير.. اضغط <strong>معاينة</strong> للتجربة.</p></div>
             </div>
             <div class="grid-container" id="tier3-container"></div>
         </section>
@@ -248,30 +193,26 @@
         <div class="reader-content">
             <div class="reader-header">
                 <div class="reader-title-area">
-                    <h3 id="readerTitle">عنوان الكورس</h3>
-                    <div class="reader-meta" id="readerAuthor">بواسطة: ...</div>
+                    <h3 id="readerTitle">...</h3>
+                    <div class="reader-meta" id="readerAuthor">...</div>
                 </div>
                 <button class="btn-close-reader" onclick="closeReader()"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="reader-body" id="readerBody">
-                </div>
+            <div class="reader-body" id="readerBody"></div>
         </div>
     </div>
 
     <script>
-        const STORAGE_KEY = 'knowledge_ladder_db';
+        // *** CRITICAL UPDATE: Changed key to 'v2' to force fresh data load ***
+        const STORAGE_KEY = 'knowledge_ladder_db_v2';
 
-        // --- 1. RICH HTML CONTENT GENERATION ---
         function generateCourses() {
             return [
                 { 
                     id: 1, 
                     title: "تقنية البومودورو (Pomodoro)", 
-                    type: "course", 
-                    tier: 3, 
-                    author: "TechLead", 
-                    date: "2026-02-01",
-                    desc: "تعلم كيف تبرمج لمدة 25 دقيقة بتركيز تام، وكيف تتجنب الإرهاق الذهني.",
+                    type: "course", tier: 3, author: "TechLead", date: "2026-02-01",
+                    desc: "تعلم كيف تبرمج لمدة 25 دقيقة بتركيز تام.",
                     htmlContent: `
                         <div class="course-html">
                             <div style="text-align:center; margin-bottom:3rem">
@@ -279,127 +220,56 @@
                                 <h1>تقنية البومودورو</h1>
                                 <p style="font-size:1.2rem; color:#94a3b8">كيف تنجز ضعف العمل في نصف الوقت؟</p>
                             </div>
-
                             <div class="highlight-box">
                                 <h3 style="margin-top:0"><i class="fa-solid fa-lightbulb"></i> الفكرة الأساسية</h3>
-                                <p>عقلك ليس مصمماً للتركيز المستمر لساعات طويلة. البومودورو يقسم وقتك إلى فترات قصيرة عالية الكثافة.</p>
-                                <strong>المعادلة: 25 دقيقة عمل + 5 دقائق راحة = 1 بومودورو.</strong>
+                                <p>عقلك ليس مصمماً للتركيز المستمر. المعادلة: 25 دقيقة عمل + 5 دقائق راحة.</p>
                             </div>
-
-                            <h2><i class="fa-solid fa-list-check"></i> خطوات التنفيذ</h2>
+                            <h2><i class="fa-solid fa-list-check"></i> الخطوات</h2>
                             <ul class="step-list">
-                                <li class="step-item">
-                                    <span class="step-num">1</span>
-                                    <div><strong>حدد المهمة:</strong> اختر شيئاً واحداً فقط (مثلاً: كتابة دالة API Login).</div>
-                                </li>
-                                <li class="step-item">
-                                    <span class="step-num">2</span>
-                                    <div><strong>اضبط المؤقت:</strong> 25 دقيقة. ممنوع التوقف، ممنوع تفقد الهاتف.</div>
-                                </li>
-                                <li class="step-item">
-                                    <span class="step-num">3</span>
-                                    <div><strong>اعمل بتركيز:</strong> عندما تأتيك فكرة مشتتة، اكتبها في ورقة وعد للعمل فوراً.</div>
-                                </li>
-                                <li class="step-item">
-                                    <span class="step-num">4</span>
-                                    <div><strong>خذ استراحة:</strong> 5 دقائق. قم، تحرك، اشرب ماء. لا تنظر للشاشة.</div>
-                                </li>
+                                <li class="step-item"><span class="step-num">1</span><div><strong>حدد المهمة:</strong> اختر شيئاً واحداً فقط.</div></li>
+                                <li class="step-item"><span class="step-num">2</span><div><strong>اضبط المؤقت:</strong> 25 دقيقة. ممنوع التوقف.</div></li>
+                                <li class="step-item"><span class="step-num">3</span><div><strong>استراحة:</strong> 5 دقائق. ابتعد عن الشاشة.</div></li>
                             </ul>
-
-                            <button class="btn-complete" onclick="closeReaderWithSuccess()">🎉 لقد أنهيت الدرس</button>
-                        </div>
-                    `
+                            <button class="btn-complete" onclick="closeReaderWithSuccess(this)"><span>🎉 لقد أنهيت الدرس</span></button>
+                        </div>`
                 },
                 { 
                     id: 2, 
-                    title: "مصفوفة أيزنهاور (Eisenhower Matrix)", 
-                    type: "course", 
-                    tier: 3, 
-                    author: "PM_Sarah", 
-                    date: "2026-02-02",
-                    desc: "أداة اتخاذ القرار التي يستخدمها المدراء لترتيب الأولويات.",
+                    title: "مصفوفة أيزنهاور (Eisenhower)", 
+                    type: "course", tier: 3, author: "PM_Sarah", date: "2026-02-02",
+                    desc: "أداة اتخاذ القرار لترتيب الأولويات.",
                     htmlContent: `
                         <div class="course-html">
                             <h1>📊 مصفوفة أيزنهاور</h1>
-                            <p>توقف عن الانشغال، وابدأ في الإنتاجية. الفرق بينهما هو "الأولوية".</p>
-                            
                             <div class="grid-visual">
-                                <div class="grid-box" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">
-                                    <i class="fa-solid fa-fire fa-2x"></i>
-                                    <h3>1. افعله الآن</h3>
-                                    <p>هام وعاجل<br>(الأزمات، الديدلاين)</p>
-                                </div>
-                                <div class="grid-box" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-                                    <i class="fa-solid fa-calendar-check fa-2x"></i>
-                                    <h3>2. خطط له</h3>
-                                    <p>هام وغير عاجل<br>(التعلم، التخطيط، الرياضة)</p>
-                                </div>
-                                <div class="grid-box" style="background: linear-gradient(135deg, #eab308, #a16207);">
-                                    <i class="fa-solid fa-user-group fa-2x"></i>
-                                    <h3>3. فوضه</h3>
-                                    <p>غير هام وعاجل<br>(الاجتماعات الروتينية)</p>
-                                </div>
-                                <div class="grid-box" style="background: linear-gradient(135deg, #64748b, #334155);">
-                                    <i class="fa-solid fa-trash-can fa-2x"></i>
-                                    <h3>4. اتركه</h3>
-                                    <p>غير هام وغير عاجل<br>(تصفح بلا هدف)</p>
-                                </div>
+                                <div class="grid-box" style="background: linear-gradient(135deg, #ef4444, #b91c1c);"><h3>1. افعله الآن</h3><p>هام وعاجل</p></div>
+                                <div class="grid-box" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);"><h3>2. خطط له</h3><p>هام وغير عاجل</p></div>
+                                <div class="grid-box" style="background: linear-gradient(135deg, #eab308, #a16207);"><h3>3. فوضه</h3><p>غير هام وعاجل</p></div>
+                                <div class="grid-box" style="background: linear-gradient(135deg, #64748b, #334155);"><h3>4. اتركه</h3><p>غير هام وغير عاجل</p></div>
                             </div>
-
-                            <div class="highlight-box">
-                                <strong>نصيحة للمبرمجين:</strong> المربع رقم 2 (الأزرق) هو المكان الذي يحدث فيه النمو الحقيقي. خصص له ساعتين يومياً.
-                            </div>
-                            
-                            <button class="btn-complete" onclick="closeReaderWithSuccess()">🎉 لقد أنهيت الدرس</button>
-                        </div>
-                    `
+                            <button class="btn-complete" onclick="closeReaderWithSuccess(this)"><span>🎉 لقد أنهيت الدرس</span></button>
+                        </div>`
                 },
                 { 
                     id: 3, 
-                    title: "قاعدة الـ 5 ثواني (Mel Robbins)", 
-                    type: "course", 
-                    tier: 3, 
-                    author: "HR_Team", 
-                    date: "2026-02-03",
-                    desc: "كيف تخدع عقلك ليتوقف عن التسويف ويبدأ العمل فوراً.",
+                    title: "قاعدة الـ 5 ثواني", 
+                    type: "course", tier: 3, author: "HR_Team", date: "2026-02-03",
+                    desc: "كيف تخدع عقلك ليتوقف عن التسويف.",
                     htmlContent: `
                         <div class="course-html">
-                            <div style="text-align:center;">
-                                <h1 style="font-size:4rem; margin:0; color:var(--primary)">5 - 4 - 3 - 2 - 1 🚀</h1>
-                                <h2>قاعدة الـ 5 ثواني</h2>
-                            </div>
-                            
-                            <p style="text-align:center; margin: 2rem 0;">اللحظة التي تشعر فيها بالكسل، لديك نافذة زمنية مدتها 5 ثواني فقط قبل أن يقنعك عقلك بالتوقف.</p>
-
-                            <div class="highlight-box" style="border-right: none; border-left: 4px solid var(--accent);">
-                                <h3>🧠 لماذا تعمل هذه القاعدة؟</h3>
-                                <p>العد العكسي يقطع دائرة التفكير المعتادة في الدماغ (Habit Loop) وينشط "القشرة الجبهية" المسؤولة عن اتخاذ القرارات الواعية.</p>
-                            </div>
-
-                            <h2>تطبيقات عملية:</h2>
-                            <ul class="step-list">
-                                <li class="step-item">
-                                    <i class="fa-solid fa-bed fa-2x" style="color:var(--text-muted)"></i>
-                                    <div>عندما يرن المنبه في الصباح: <strong>5-4-3-2-1 انهض!</strong></div>
-                                </li>
-                                <li class="step-item">
-                                    <i class="fa-solid fa-code fa-2x" style="color:var(--text-muted)"></i>
-                                    <div>عندما تخاف من ضغط زر Deploy: <strong>5-4-3-2-1 اضغط!</strong></div>
-                                </li>
-                            </ul>
-                            
-                            <button class="btn-complete" onclick="closeReaderWithSuccess()">🎉 لقد أنهيت الدرس</button>
-                        </div>
-                    `
+                            <div style="text-align:center;"><h1 style="font-size:4rem; margin:0; color:var(--primary)">5 - 4 - 3 - 2 - 1 🚀</h1><h2>قاعدة الـ 5 ثواني</h2></div>
+                            <div class="highlight-box" style="border-right:none; border-left:4px solid var(--accent);"><h3>🧠 لماذا تعمل؟</h3><p>العد العكسي يقطع دائرة التفكير المعتادة وينشط القشرة الجبهية.</p></div>
+                            <button class="btn-complete" onclick="closeReaderWithSuccess(this)"><span>🎉 لقد أنهيت الدرس</span></button>
+                        </div>`
                 }
             ];
         }
 
-        // --- 2. APP LOGIC ---
+        // --- Logic ---
         let allContent = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-        // AUTO-INIT: If empty or missing rich HTML, load default content SILENTLY
-        if (allContent.length === 0 || !allContent[0].htmlContent) {
+        // Force load if empty
+        if (allContent.length === 0) {
             allContent = generateCourses();
             localStorage.setItem(STORAGE_KEY, JSON.stringify(allContent));
         }
@@ -411,36 +281,22 @@
             ['tier1', 'tier2', 'tier3'].forEach((id, idx) => {
                 const container = document.getElementById(`${id}-container`);
                 const items = tiers[idx + 1];
-                
-                if (items.length === 0) {
-                    // Empty state handled in CSS/HTML structure or left plain
-                    container.innerHTML = `<div class="empty-state">المسار فارغ حالياً</div>`;
-                } else {
+                if (items.length === 0) container.innerHTML = `<div class="empty-state">المسار فارغ حالياً</div>`;
+                else {
                     container.innerHTML = items.map(item => `
                         <article class="card">
-                            <div class="card-media">
-                                <span class="type-badge">COURSE</span>
-                                <i class="fa-solid fa-laptop-code"></i>
-                            </div>
-                            <div class="card-body">
-                                <h3 class="card-title">${item.title}</h3>
-                                <p class="card-desc">${item.desc}</p>
-                            </div>
+                            <div class="card-media"><span class="type-badge">COURSE</span><i class="fa-solid fa-laptop-code"></i></div>
+                            <div class="card-body"><h3 class="card-title">${item.title}</h3><p class="card-desc">${item.desc}</p></div>
                             <div class="card-actions">
-                                <div style="display:flex; gap:10px; font-size:0.8rem; color:#64748b">
-                                    <span><i class="fa-solid fa-user"></i> ${item.author}</span>
-                                </div>
-                                <button class="btn-action btn-view" onclick="openReader(${item.id})">
-                                    معاينة <i class="fa-solid fa-arrow-left"></i>
-                                </button>
+                                <div style="font-size:0.8rem; color:#64748b"><i class="fa-solid fa-user"></i> ${item.author}</div>
+                                <button class="btn-action btn-view" onclick="openReader(${item.id})">معاينة <i class="fa-solid fa-arrow-left"></i></button>
                             </div>
-                        </article>
-                    `).join('');
+                        </article>`).join('');
                 }
             });
         }
 
-        // --- 3. READER LOGIC ---
+        // --- Reader Functions ---
         const readerModal = document.getElementById('readerModal');
         const readerTitle = document.getElementById('readerTitle');
         const readerAuthor = document.getElementById('readerAuthor');
@@ -452,32 +308,31 @@
                 readerTitle.innerText = item.title;
                 readerAuthor.innerText = "المؤلف: " + item.author;
                 readerBody.innerHTML = item.htmlContent;
-                
                 readerModal.style.display = 'flex';
-                // Trigger reflow for transition
                 setTimeout(() => readerModal.classList.add('active'), 10);
             }
         }
 
         function closeReader() {
             readerModal.classList.remove('active');
-            setTimeout(() => {
-                readerModal.style.display = 'none';
-            }, 300); // Wait for transition
+            setTimeout(() => readerModal.style.display = 'none', 300);
         }
 
-        function closeReaderWithSuccess() {
-            alert("أحسنت! تم إكمال الدرس بنجاح.");
-            closeReader();
+        // *** ROBUST FUNCTION with fallback ***
+        function closeReaderWithSuccess(btnElement) {
+            // Safety Check: If button element is missing or undefined
+            if (!btnElement) {
+                closeReader(); 
+                return;
+            }
+
+            btnElement.innerHTML = '<span>تم الإكمال بنجاح ✅</span>';
+            btnElement.classList.add('success');
+            setTimeout(() => closeReader(), 1000);
         }
 
-        // Init
         renderAll();
-
-        // Close on outside click
-        readerModal.onclick = (e) => {
-            if(e.target === readerModal) closeReader();
-        }
+        readerModal.onclick = (e) => { if(e.target === readerModal) closeReader(); }
     </script>
 </body>
 </html>
